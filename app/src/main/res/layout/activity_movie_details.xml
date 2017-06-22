@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
@@ -35,5 +36,25 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/rbVoteAverage"
-        android:layout_alignParentBottom="true" />
+        android:layout_above="@+id/posterButton" />
+
+    <ImageButton
+        android:id="@+id/posterButton"
+        android:layout_width="320dp"
+        android:layout_height="180dp"
+        app:srcCompat="@drawable/flicks_backdrop_placeholder"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/posterButton"
+        android:layout_alignEnd="@+id/posterButton"
+        android:layout_below="@+id/tvOverview"
+        android:layout_alignLeft="@+id/posterButton"
+        android:layout_alignStart="@+id/posterButton" />
 </RelativeLayout>

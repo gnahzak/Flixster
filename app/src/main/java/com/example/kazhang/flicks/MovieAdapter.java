@@ -108,17 +108,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     // create viewholder as a static inner class
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        ImageView ivPosterImage;
-        ImageView ivBackdropImage;
+//        @BindView(R.id.ivPosterImage) ImageView ivPosterImage;
+//        @Nullable
+//        @BindView(R.id.ivBackdropImage) ImageView ivBackdropImage;
+         ImageView ivPosterImage;
+         ImageView ivBackdropImage;
         TextView tvTitle;
         TextView tvOverview;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            //ButterKnife.bind(this, itemView);
 
             // look up view objects by ID
-            ivPosterImage = (ImageView) itemView.findViewById(R.id.ivPosterImage);
-            ivBackdropImage = (ImageView) itemView.findViewById(R.id.ivBackdropImage);
+             ivPosterImage = (ImageView) itemView.findViewById(R.id.ivPosterImage);
+             ivBackdropImage = (ImageView) itemView.findViewById(R.id.ivBackdropImage);
             tvOverview = (TextView) itemView.findViewById(R.id.tvOverview);
             tvTitle = (TextView) itemView.findViewById(R.id.tvTitle);
             itemView.setOnClickListener(this);
