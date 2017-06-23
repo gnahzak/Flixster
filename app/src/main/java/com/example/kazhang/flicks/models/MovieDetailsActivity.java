@@ -151,28 +151,6 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
         });
     }
 
-    // listen for the movie poster being clicked and redirect afterward
-//    private void setupViewListener() {
-//        Log.i(TAG, "Setting up listener on movie poster");
-//
-//        posterButton.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//
-//                // create a new activity
-//                Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
-//
-//                // pass the data being edited
-//                i.putExtra(VIDEO_ID, videoId);
-//
-//                // display the activity
-//                startActivityForResult(i, VIEW_TRAILER_CODE);
-//            }
-//        });
-//
-//    }
-
     // handle errors, log, and alert user
     private void logError(String message, Throwable error, boolean alertUser) {
         // always log the error
