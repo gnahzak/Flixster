@@ -1,18 +1,16 @@
 package com.example.kazhang.flicks.models;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.example.kazhang.flicks.MovieTrailerActivity;
 import com.example.kazhang.flicks.R;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -26,7 +24,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
-import static android.provider.MediaStore.Video.Thumbnails.VIDEO_ID;
 import static com.example.kazhang.flicks.MovieListActivity.API_BASE_URL;
 import static com.example.kazhang.flicks.MovieListActivity.API_KEY_PARAM;
 
@@ -34,7 +31,7 @@ import static com.example.kazhang.flicks.MovieListActivity.API_KEY_PARAM;
  * Created by kazhang on 6/21/17.
  */
 
-public class MovieDetailsActivity extends AppCompatActivity {
+public class MovieDetailsActivity extends YouTubeBaseActivity {
 
     Movie movie;
 
@@ -49,7 +46,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvTitle) TextView tvTitle;
     @BindView(R.id.tvOverview) TextView tvOverview;
     @BindView(R.id.rbVoteAverage) RatingBar rbVoteAverage;
-    @BindView(R.id.posterButton) ImageButton posterButton;
+    @BindView(R.id.player) YouTubePlayerView playerView;
+//    @BindView(R.id.posterButton) ImageButton posterButton;
 
     // tag for all logging from this activity
     public final static String TAG = "MovieDetailsActivity";
@@ -77,14 +75,14 @@ public class MovieDetailsActivity extends AppCompatActivity {
         getVideoList();
 
         // set button image to poster, loading using Glide
-        String imageUrl = getIntent().getStringExtra("BACKDROP_URL");
-        int placeholderId = R.drawable.flicks_backdrop_placeholder;
+//        String imageUrl = getIntent().getStringExtra("BACKDROP_URL");
+//        int placeholderId = R.drawable.flicks_backdrop_placeholder;
 
-        Glide.with(this)
-                .load(imageUrl)
-                .placeholder(placeholderId)
-                .error(placeholderId)
-                .into(posterButton);
+//        Glide.with(this)
+//                .load(imageUrl)
+//                .placeholder(placeholderId)
+//                .error(placeholderId)
+//                .into(posterButton);
 
     }
 
@@ -111,7 +109,8 @@ public class MovieDetailsActivity extends AppCompatActivity {
                         Log.i(TAG, String.format("The first video link is %s", videoId));
 
                         // start listening for clicks on the poster
-                        setupViewListener();
+                        setupVideoPlayer();
+//                        setupViewListener();
                     } else {
                         // leave key as empty and log a message
                         videoId = "";
@@ -129,27 +128,50 @@ public class MovieDetailsActivity extends AppCompatActivity {
         });
     }
 
-    // listen for the movie poster being clicked and redirect afterward
-    private void setupViewListener() {
-        Log.i(TAG, "Setting up listener on movie poster");
+    // set up Youtube player
+    private void setupVideoPlayer() {
+        // resolve the player view from the layout
+        // YouTubePlayerView playerView = (YouTubePlayerView) findViewById(R.id.player);
 
-        posterButton.setOnClickListener(new View.OnClickListener() {
+        // initialize with API key stored in secrets.xml
+        playerView.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider,
+                                                YouTubePlayer youTubePlayer, boolean b) {
+                // do any work here to cue video, play video, etc.
+                youTubePlayer.cueVideo(videoId);
+            }
 
             @Override
-            public void onClick(View v) {
-
-                // create a new activity
-                Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
-
-                // pass the data being edited
-                i.putExtra(VIDEO_ID, videoId);
-
-                // display the activity
-                startActivityForResult(i, VIEW_TRAILER_CODE);
+            public void onInitializationFailure(YouTubePlayer.Provider provider,
+                                                YouTubeInitializationResult youTubeInitializationResult) {
+                // log the error
+                Log.e("MovieTrailerActivity", "Error initializing YouTube player");
             }
         });
-
     }
+
+    // listen for the movie poster being clicked and redirect afterward
+//    private void setupViewListener() {
+//        Log.i(TAG, "Setting up listener on movie poster");
+//
+//        posterButton.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//                // create a new activity
+//                Intent i = new Intent(MovieDetailsActivity.this, MovieTrailerActivity.class);
+//
+//                // pass the data being edited
+//                i.putExtra(VIDEO_ID, videoId);
+//
+//                // display the activity
+//                startActivityForResult(i, VIEW_TRAILER_CODE);
+//            }
+//        });
+//
+//    }
 
     // handle errors, log, and alert user
     private void logError(String message, Throwable error, boolean alertUser) {

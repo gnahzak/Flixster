@@ -7,55 +7,43 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:text="Movie Title"
-        android:textAppearance="@android:style/TextAppearance.Large" />
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:layout_below="@+id/player"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:paddingTop="10dp" />
 
     <RatingBar
         android:id="@+id/rbVoteAverage"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:layout_below="@+id/tvTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvTitle"
-        android:numStars="5"
-        android:stepSize="0.5" />
+        android:paddingTop="5dp"
+        android:layout_margin="5dp"/>
 
     <TextView
         android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_below="@+id/rbVoteAverage"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:text="TextView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/rbVoteAverage"
-        android:layout_above="@+id/posterButton" />
+        android:layout_margin="5dp"/>
 
-    <ImageButton
-        android:id="@+id/posterButton"
-        android:layout_width="320dp"
-        android:layout_height="180dp"
-        app:srcCompat="@drawable/flicks_backdrop_placeholder"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/player"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/posterButton"
-        android:layout_alignLeft="@+id/posterButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/posterButton"
-        android:layout_alignStart="@+id/posterButton"
-        android:layout_below="@+id/tvOverview"
-        app:srcCompat="@android:drawable/ic_media_play"
-        android:padding="50dp"/>
+        android:layout_alignParentTop="true" />
+
 </RelativeLayout>

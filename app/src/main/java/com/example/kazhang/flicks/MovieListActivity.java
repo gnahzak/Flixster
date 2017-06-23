@@ -61,7 +61,6 @@ public class MovieListActivity extends AppCompatActivity {
         adapter = new MovieAdapter(movies);
 
         // resolve recycler view and connect a layout manager and the adapter
-        // rvMovies = (RecyclerView) findViewById(rvMovies);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
         rvMovies.setAdapter(adapter);
 
