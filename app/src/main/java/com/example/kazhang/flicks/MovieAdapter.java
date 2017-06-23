@@ -137,6 +137,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 Movie movie = movies.get(position);
                 Intent intent = new Intent(context, MovieDetailsActivity.class);
                 intent.putExtra(Movie.class.getSimpleName(), Parcels.wrap(movie));
+
+                // store URL for backdrop image
+                String backdrop_url = config.getImageUrl(config.getBackdropSize(), movie.getBackdropPath());
+                intent.putExtra("BACKDROP_URL", backdrop_url);
                 context.startActivity(intent);
             }
         }

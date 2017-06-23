@@ -50,11 +50,12 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_alignEnd="@+id/posterButton"
+        android:layout_alignLeft="@+id/posterButton"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/posterButton"
-        android:layout_alignEnd="@+id/posterButton"
+        android:layout_alignStart="@+id/posterButton"
         android:layout_below="@+id/tvOverview"
-        android:layout_alignLeft="@+id/posterButton"
-        android:layout_alignStart="@+id/posterButton" />
+        app:srcCompat="@android:drawable/ic_media_play"
+        android:padding="50dp"/>
 </RelativeLayout>

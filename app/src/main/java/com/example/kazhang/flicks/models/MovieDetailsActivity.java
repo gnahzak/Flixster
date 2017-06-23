@@ -10,6 +10,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.kazhang.flicks.MovieTrailerActivity;
 import com.example.kazhang.flicks.R;
 import com.loopj.android.http.AsyncHttpClient;
@@ -40,7 +41,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
     // instance fields
     AsyncHttpClient client;
     String videoId;
-    ImageButton posterButton;
 
     // numeric code to identify current movie
     public final static int VIEW_TRAILER_CODE = 20;
@@ -49,6 +49,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvTitle) TextView tvTitle;
     @BindView(R.id.tvOverview) TextView tvOverview;
     @BindView(R.id.rbVoteAverage) RatingBar rbVoteAverage;
+    @BindView(R.id.posterButton) ImageButton posterButton;
 
     // tag for all logging from this activity
     public final static String TAG = "MovieDetailsActivity";
@@ -75,8 +76,15 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         getVideoList();
 
-        // set button image to poster
-        //imageUrl = config.getImageUrl(config.getBackdropSize(), movie.getBackdropPath());)
+        // set button image to poster, loading using Glide
+        String imageUrl = getIntent().getStringExtra("BACKDROP_URL");
+        int placeholderId = R.drawable.flicks_backdrop_placeholder;
+
+        Glide.with(this)
+                .load(imageUrl)
+                .placeholder(placeholderId)
+                .error(placeholderId)
+                .into(posterButton);
 
     }
 
@@ -103,7 +111,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
                         Log.i(TAG, String.format("The first video link is %s", videoId));
 
                         // start listening for clicks on the poster
-                        posterButton = (ImageButton) findViewById(R.id.posterButton);
                         setupViewListener();
                     } else {
                         // leave key as empty and log a message
