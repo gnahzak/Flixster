@@ -47,7 +47,7 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
     @BindView(R.id.tvOverview) TextView tvOverview;
     @BindView(R.id.rbVoteAverage) RatingBar rbVoteAverage;
     @BindView(R.id.player) YouTubePlayerView playerView;
-//    @BindView(R.id.posterButton) ImageButton posterButton;
+    @BindView(R.id.releaseDate) TextView releaseDate;
 
     // tag for all logging from this activity
     public final static String TAG = "MovieDetailsActivity";
@@ -62,9 +62,11 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
         movie = (Movie) Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
         Log.d("MovieDetailsActivity", String.format("Showing details for '%s'", movie.getTitle()));
 
-        // set title and overview from the movie
+        // set title, genre, and overview from the movie
         tvTitle.setText(movie.getTitle());
         tvOverview.setText(movie.getOverview());
+        releaseDate.setText(movie.getReleaseDate());
+
 
         float voteAverage = movie.getVoteAverage().floatValue();
         rbVoteAverage.setRating(voteAverage = voteAverage > 0 ? voteAverage / 2.0f : voteAverage);
@@ -73,16 +75,6 @@ public class MovieDetailsActivity extends YouTubeBaseActivity {
         client = new AsyncHttpClient();
 
         getVideoList();
-
-        // set button image to poster, loading using Glide
-//        String imageUrl = getIntent().getStringExtra("BACKDROP_URL");
-//        int placeholderId = R.drawable.flicks_backdrop_placeholder;
-
-//        Glide.with(this)
-//                .load(imageUrl)
-//                .placeholder(placeholderId)
-//                .error(placeholderId)
-//                .into(posterButton);
 
     }
 
