@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="5dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@drawable/movie_row">
 
     <ImageView
         android:id="@+id/ivPosterImage"
@@ -18,21 +19,31 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivPosterImage"
-        android:fontFamily="none"
+        android:fontFamily="sans-serif"
         android:text="Movie Title"
+        android:textAlignment="center"
+        android:textAllCaps="false"
         android:textAppearance="@android:style/TextAppearance.Large"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:textColor="?android:attr/windowBackground"
+        android:textSize="19dp" />
 
     <TextView
         android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Movie overview and synopsis"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/tvTitle"
         android:layout_toRightOf="@+id/ivPosterImage"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Movie overview and synopsis"
+        android:textAlignment="center"
+        android:textColor="@color/colorVeryLightGrey"
+        android:textSize="14dp"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="5" />
 </RelativeLayout>

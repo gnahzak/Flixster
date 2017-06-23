@@ -18,6 +18,7 @@ public class Movie {
     String backdropPath;
     Double voteAverage;
     Integer id;
+    String genre;
 
     public Movie() {}
 
@@ -29,6 +30,7 @@ public class Movie {
         backdropPath = object.getString("backdrop_path");
         voteAverage = object.getDouble("vote_average");
         id = object.getInt("id");
+        genre = object.getString("genre");
     }
 
     public String getTitle() {
@@ -53,5 +55,9 @@ public class Movie {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getGenre() {
+        return genre;
     }
 }

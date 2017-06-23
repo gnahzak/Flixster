@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Movie Title"
-        android:textAppearance="@android:style/TextAppearance.Large"
-        android:layout_below="@+id/player"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_below="@+id/player"
         android:layout_margin="5dp"
-        android:paddingTop="10dp" />
+        android:fontFamily="sans-serif"
+        android:paddingTop="10dp"
+        android:text="Movie Title"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textColor="?android:attr/windowBackground"
+        android:textSize="22dp" />
 
     <RatingBar
         android:id="@+id/rbVoteAverage"
@@ -26,19 +30,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:paddingTop="5dp"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:progressTint="@color/colorGold"
+        android:progressBackgroundTint="@color/colorLightGrey"/>
 
     <TextView
         android:id="@+id/tvOverview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_below="@+id/rbVoteAverage"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="5dp"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/rbVoteAverage"
+        android:layout_margin="5dp"
+        android:text="TextView"
+        android:textColor="@color/colorVeryLightGrey"
+        android:textSize="14dp" />
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/player"
